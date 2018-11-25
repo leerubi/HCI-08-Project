@@ -68,8 +68,9 @@ Progress Report
 |         |  2 units    | AD_S03 |   패턴 이미지 샘플 만들기    |
 
 
-### Milestone 3 (18/12/10 ~ 18/12/14)
+### Milestone 4 (18/12/10 ~ 18/12/14)
 
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
+|      |      |        |        |
 |         | 4 units  | REP_S01 | 두번째 프로젝트 레포트 작성 및 데모 준비  |

@@ -13,7 +13,67 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/noteText"
+            android:id="@+id/noteText1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#E9E9F4"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:text="등록된 키워드가 푸시 알림에 포함되면 LED Matrix에 나타냅니다."
+            android:textColor="#5A5A5A"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/keywordName"
+                android:layout_width="295dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="키워드 알림"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteY="38dp" />
+
+            <TextView
+                android:id="@+id/keywordOnOffText"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="꺼짐"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="171dp"
+                tools:layout_editor_absoluteY="38dp" />
+
+            <TextView
+                android:id="@+id/keywordOnOffText2"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginRight="12dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text=" >"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="171dp"
+                tools:layout_editor_absoluteY="38dp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/noteText2"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="#E9E9F4"
@@ -33,8 +93,9 @@
                 android:id="@+id/appImg1"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:padding="4dp"
                 app:srcCompat="@android:drawable/sym_action_call"
                 tools:layout_editor_absoluteX="16dp"
@@ -44,8 +105,9 @@
                 android:id="@+id/appName1"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="4dp"
@@ -59,8 +121,9 @@
                 android:id="@+id/appSwitch1"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 tools:layout_editor_absoluteX="261dp"
                 tools:layout_editor_absoluteY="38dp" />
 
@@ -68,8 +131,10 @@
                 android:id="@+id/appPatternButton1"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
                 android:text="P"
                 tools:layout_editor_absoluteX="171dp"
                 tools:layout_editor_absoluteY="38dp" />
@@ -91,8 +156,9 @@
                 android:id="@+id/appImg2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:padding="4dp"
                 app:srcCompat="@android:drawable/sym_action_email"
                 tools:layout_editor_absoluteX="16dp"
@@ -102,8 +168,9 @@
                 android:id="@+id/appName2"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="4dp"
@@ -117,8 +184,9 @@
                 android:id="@+id/appSwitch2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 tools:layout_editor_absoluteX="261dp"
                 tools:layout_editor_absoluteY="38dp" />
 
@@ -126,8 +194,10 @@
                 android:id="@+id/appPatternButton2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
                 android:text="P"
                 tools:layout_editor_absoluteX="171dp"
                 tools:layout_editor_absoluteY="38dp" />
@@ -149,8 +219,9 @@
                 android:id="@+id/appImg3"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:padding="4dp"
                 app:srcCompat="@drawable/kakaolink_btn"
                 tools:layout_editor_absoluteX="16dp"
@@ -160,8 +231,9 @@
                 android:id="@+id/appName3"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="4dp"
@@ -175,8 +247,9 @@
                 android:id="@+id/appSwitch3"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 tools:layout_editor_absoluteX="261dp"
                 tools:layout_editor_absoluteY="38dp" />
 
@@ -184,8 +257,10 @@
                 android:id="@+id/appPatternButton3"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
                 android:text="P"
                 tools:layout_editor_absoluteX="171dp"
                 tools:layout_editor_absoluteY="38dp" />

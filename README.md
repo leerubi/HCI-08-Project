@@ -52,17 +52,24 @@ Progress Report
 |         | 5 units   | LED_S02 |  LED Matrix 납땜  |
 |         | 1 units  | AD_S01 | 어플과 LED Matrix 간 블루투스 통신  |
 |         | 1 units  | AD_S02 | 패턴 샘플 띄워보기  |
-|         | 3 units  | REP_S01 | 첫번째 프로젝트 레포트 제출  |
+|         | 4 units  | REP_S01 | 첫번째 프로젝트 레포트 작성 및 데모 준비  |
 
 - ``아크릴을 자를 수 있는 일물실 실험실을 빌릴 수 있는지 연락해보기.``
 - 글루건, 가위에 반납해야 함.
+- 피드백을 바탕으로 Milestone task를 수정할 예정.
 
 
-### Milestone 3 (18/12/03 ~ 18/12/09
+### Milestone 3 (18/12/03 ~ 18/12/09)
 
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
 |         |  5 units   | UI_S04 |  패턴 편집 및 적용 기능 구현(메인 버튼1)   |
 |         |  5 units   | UI_S05 |  LED Matrix-애플리케이션 간 알림 설정 기능 구현(메인 버튼2)   |
-|         |  2 units    | UI_S06 |   패턴 이미지 샘플 만들기    |
+|         |  2 units    | AD_S03 |   패턴 이미지 샘플 만들기    |
 
+
+### Milestone 3 (18/12/10 ~ 18/12/14)
+
+| actual  | estimated | story | description |
+| ------  | --------- | ----- | ----------- |
+|         | 4 units  | REP_S01 | 두번째 프로젝트 레포트 작성 및 데모 준비  |

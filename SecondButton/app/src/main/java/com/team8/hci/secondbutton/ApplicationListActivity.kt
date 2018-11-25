@@ -1,0 +1,12 @@
+package com.team8.hci.secondbutton
+
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+
+class ApplicationListActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_application_list)
+    }
+}

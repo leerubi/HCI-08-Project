@@ -2,7 +2,7 @@
 =======================
 implemented by [Dajin Lee](https://github.com/leerubi/)
 
-- PatternListActivity()
+- ApplicationListActivity()
   - UI만 구현한 상태
   - Switch로 어플 알림을 활성화/비활성화
     - 각 어플 알림 받아오는 기능 추후 구현

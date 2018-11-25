@@ -24,47 +24,45 @@ Progress Report
 - UI: 안드로이드 애플리케이션 구현
 - AD: 아두이노 구현
 - LED: LED Matrix 제작
+- REP: 프로젝트 보고서 작성
 
-### Milestone 1 (18/11/14 ~ 18/11/18)
-
-| actual  | estimated | story | description |
-| ------  | --------- | ----- | ----------- |
-|         | 3 units   | UI_S01 |  UI 디자인 설계    |
-|         | 5 units  | UI_S02 | UI Prototype 구현  |
-|         | 3 units  | UI_S03 | 애플리케이션 알림 정보 받아오기  |
-|         | 2 units  | AD_S01 | 블루투스 통신  |
-
-- LED Matrix 틀 제작은 다음주로 연기
-- 컴공 과사나 교수님께 장소 문의 -> 안 되면 산경과, 물리과에 문의
-
-- Task 1 : 페이지 구성
-  - 메인 화면에서 패턴 관리 버튼이나 어플 연동 버튼을 누를 때 다시 메인 화면으로 정보를 보내줄 필요는 없다(필요하다면 성공적으로 페이지(?)가 호출 되고 종료 되었는지 여부 정도).
-
-  1. 메인화면 (처음) 
-  (+ 문서화)
-  -> 성빈, ~화요일
-  2. 메인버튼1 - 패턴 관리
-  3. 메인버튼2 - 어플 연동
-  4. 메인버튼3 - 무드 LED (나중)
-
-
-### Milestone 2 (18/11/19 ~ 18/11/25)
+### Milestone 1 (18/11/14 ~ 18/11/25)
 
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
-|         | 5 units   | LED_S01 |  LED Matrix 틀 제작  |
-|         | 8 units   | LED_S02 |  LED Matrix 납땜  |
-|         | 5 units   | UI_S04 |  LED Matrix-애플리케이션 간 알림 설정 기능 구현   |
+|    2     | 3 units   | UI_S01 |  UI 디자인 설계    |
+|    5     | 5 units   | LED_S01 |  LED Matrix 틀 제작  |
 
-- Task 2 : 아두이노와 연결 (with 정우)
-  - LED matrix 만들면서 함께 논의)
-  
-- Task 3 : 아두이노와 연결 (with 정우)
-  - LED matrix 만들면서 함께 논의)
 
-### Milestone 3
+- LED_S01: 정통연 디시설 실습실에서 진행
+- UI_S01: 안드로이드 앱 구현 언어 - Kotiln
+  - Task 1 : 페이지 구성 (Documentation 참고)
+    1. 메인 화면 (나중에)
+      - 네비게이션 드로워 없이 주요 버튼 3개와 블루투스 연결 여부가 화면에 표시될 예정.
+    2. 메인 버튼1 - 패턴 관리 (성빈)
+    3. 메인 버튼2 - 어플 연동 (다진)
+    4. 메인 버튼3 - 무드 LED (나중에)
+
+### Milestone 2 (18/11/26 ~ 18/12/02)
 
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
-|         |   4 units    | AD_S02 |    이미지 디자인 및 구현     |
-|         |           |       |             |
+|         | 5 units  | UI_S02 | 메인 버튼1(패턴 관리) UI 구현  |
+|         | 5 units  | UI_S03 | 메인 버튼2(어플 연동) UI 구현  |
+|         | 5 units   | LED_S02 |  LED Matrix 납땜  |
+|         | 1 units  | AD_S01 | 어플과 LED Matrix 간 블루투스 통신  |
+|         | 1 units  | AD_S02 | 패턴 샘플 띄워보기  |
+|         | 3 units  | REP_S01 | 첫번째 프로젝트 레포트 제출  |
+
+- ``아크릴을 자를 수 있는 일물실 실험실을 빌릴 수 있는지 연락해보기.``
+- 글루건, 가위에 반납해야 함.
+
+
+### Milestone 3 (18/12/03 ~ 18/12/09
+
+| actual  | estimated | story | description |
+| ------  | --------- | ----- | ----------- |
+|         |  5 units   | UI_S04 |  패턴 편집 및 적용 기능 구현(메인 버튼1)   |
+|         |  5 units   | UI_S05 |  LED Matrix-애플리케이션 간 알림 설정 기능 구현(메인 버튼2)   |
+|         |  2 units    | UI_S06 |   패턴 이미지 샘플 만들기    |
+

@@ -21,7 +21,13 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".KeywordAlarmActivity"></activity>
+        <activity
+            android:name=".KeywordAlarmActivity"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

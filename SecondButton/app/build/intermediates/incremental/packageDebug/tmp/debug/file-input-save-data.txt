@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Mon Nov 26 03:02:28 KST 2018
+0.baseType=DIRECTORY
+0.base=/Users/rubi/Documents/Github/HCI-08-Project/SecondButton/app/build/intermediates/transforms/dexMerger/debug/0
+0.path=classes.dex
+0.set=DEX
+count=1

@@ -64,15 +64,15 @@ Progress Report
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
 |         | 5 units  | UI_S02 | 메인 버튼1(패턴 관리) UI 구현  |
-|         | 5 units  | UI_S03 | 메인 버튼2(어플 연동) UI 구현  |
+|    4    | 5 units  | UI_S03 | 메인 버튼2(어플 연동) UI 구현  |
 |         | 5 units   | LED_S02 |  LED Matrix 납땜  |
 |         | 1 units  | AD_S01 | 어플과 LED Matrix 간 블루투스 통신  |
 |         | 1 units  | AD_S02 | 패턴 샘플 띄워보기  |
 |         | 4 units  | REP_S01 | 첫번째 프로젝트 레포트 작성 및 데모 준비  |
 
-- ``아크릴을 자를 수 있는 일물실 실험실을 빌릴 수 있는지 연락해보기.``
+- ``아크릴을 자를 수 있는 일물실 실험실을 빌릴 수 있는지 연락해보기.`` (18/11/26 성빈이 컨택 완료)
 - 글루건, 가위에 반납해야 함.
-- 피드백을 바탕으로 Milestone task를 수정할 예정.
+- 피드백을 바탕으로 Milestone task를 수정할 예정. (18/11/27 미팅)
 
 
 ### Milestone 3 (18/12/03 ~ 18/12/09)
@@ -113,3 +113,9 @@ implemented by [Dajin Lee](https://github.com/leerubi/)
   - 입력한 키워드를 토대로 키워드 알림하는 기능 구현
     - 푸시 알림의 텍스트 추출하는 것부터 구현
   - [ex_screenshot2](/KeywordAlarmActivity.png?raw=true)
+
+- References
+  - [Saving activity state](https://stackoverflow.com/questions/151777/saving-android-activity-state-using-save-instance-state)
+  - [Switching button](https://android--code.blogspot.com/2018/02/android-kotlin-switch-button-example.html)
+  - [Notification information1](http://snowdeer.github.io/android/2017/03/26/notification-listener-service-sample/)
+  - [Notification information2](http://susemi99.kr/1413)

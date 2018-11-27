@@ -64,7 +64,7 @@ Progress Report
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
 |         | 5 units  | UI_S02 | 메인 버튼1(패턴 관리) UI 구현  |
-|    4    | 5 units  | UI_S03 | 메인 버튼2(어플 연동) UI 구현  |
+|    4 units    | 5 units  | UI_S03 | 메인 버튼2(어플 연동) UI 구현  |
 |         | 5 units   | LED_S02 |  LED Matrix 납땜  |
 |         | 1 units  | AD_S01 | 어플과 LED Matrix 간 블루투스 통신  |
 |         | 1 units  | AD_S02 | 패턴 샘플 띄워보기  |

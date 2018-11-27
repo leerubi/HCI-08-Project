@@ -1,4 +1,0 @@
-#Mon Nov 26 12:56:13 KST 2018
-base.0=/Users/rubi/Documents/Github/HCI-08-Project/SecondButton/app/build/intermediates/transforms/dexMerger/debug/0
-path.0=classes.dex
-renamed.0=classes.dex

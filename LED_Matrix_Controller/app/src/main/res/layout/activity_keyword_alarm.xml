@@ -15,8 +15,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:background="#E9E9F4"
-            />
+            android:background="#E9E9F4" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,9 +26,9 @@
                 android:id="@+id/keywordName2"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="4dp"
@@ -43,10 +42,10 @@
                 android:id="@+id/keywordSwitch"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="12dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="4dp"
                 tools:layout_editor_absoluteX="261dp"
                 tools:layout_editor_absoluteY="38dp" />
 
@@ -74,9 +73,9 @@
             android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:background="@android:color/transparent"
             android:ems="10"
             android:hint="예) 이다진"
@@ -86,9 +85,9 @@
             android:textColor="@android:color/black" />
 
         <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray" />
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,9 +98,9 @@
                 android:id="@+id/addKeywordImg"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 android:padding="4dp"
                 app:srcCompat="@android:drawable/ic_input_add"
                 tools:layout_editor_absoluteX="16dp"
@@ -111,8 +110,8 @@
                 android:id="@+id/addKeywordText"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="4dp"
@@ -124,7 +123,6 @@
 
 
         </LinearLayout>
-
 
 
         <View

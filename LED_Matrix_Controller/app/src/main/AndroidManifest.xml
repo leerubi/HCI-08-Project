@@ -9,12 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ApplicationListActivity">
+
+        <!-- 메인 화면을 나타내는 Activity입니다. 시작하자마자 현재 알람 리스트를 받아오는 AlarmListfetcherService를 실행합니다 -->
+        <activity android:name=".MainScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <!-- 현재 어플의 리스트를 보여주는 Activity입니다 -->
+        <activity android:name=".ApplicationListActivity">
+
         </activity>
 
         <meta-data
@@ -25,9 +30,14 @@
             android:name=".KeywordAlarmActivity"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
-                <action android:name="android.service.notification.NotificationListenerService"/>
+                <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </activity>
+
+        <!-- 현재 알람의 리스트를 받아오는 백그라운드 서비스입니다 -->
+        <service
+            android:name=".AlarmListFetcherService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

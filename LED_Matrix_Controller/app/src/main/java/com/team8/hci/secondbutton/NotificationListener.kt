@@ -7,6 +7,9 @@ import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import android.support.v4.app.NotificationManagerCompat
 import android.util.Log
+import android.widget.Toast
+import com.team8.hci.secondbutton.R.id.*
+import kotlinx.android.synthetic.main.activity_application_list.*
 
 class NotificationListener: NotificationListenerService () {
 
@@ -33,15 +36,45 @@ class NotificationListener: NotificationListenerService () {
 */
     override fun onNotificationPosted(sbn: StatusBarNotification) {
 
-        Log.i("NotificationListener", "PackageName:${sbn.packageName}")
         val notificatin = sbn.getNotification()
         val extras = notificatin.extras
         val title = extras.getString(Notification.EXTRA_TITLE)
         val text = extras.getCharSequence(Notification.EXTRA_TEXT)
         val subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT)
+        Log.i("NotificationListener", "PackageName:${sbn.packageName}")
         Log.i("NotificationListener", "Title:$title")
         Log.i("NotificationListener", "Text:$text")
         Log.i("NotificationListener", "Sub Text:$subText")
+
+        // 알림 switch on 한 앱에서 알림이 오면 LED 작동
+        if ("android.incallui" in sbn.packageName) {
+            if ("전화" in App.prefs.appListEditText) {
+                Toast.makeText(this, "전화 LED 반짝!", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        if ("android.messaging" in sbn.packageName) {
+            if ("메시지" in App.prefs.appListEditText) {
+                Toast.makeText(this, "메시지 LED 반짝!", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        if ("com.kakao.talk" in sbn.packageName) {
+            if ("카카오톡" in App.prefs.appListEditText) {
+                Toast.makeText(this, "카카오톡 LED 반짝!", Toast.LENGTH_LONG).show()
+            }
+        }
+
+
+        // 키워드 알림 in all apps (for now)
+        if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
+            if ("키워드" in title || "키워드" in text) {
+                Toast.makeText(this, "키워드 LED 반짝!", Toast.LENGTH_LONG).show()
+            }
+            if ("이다진" in title || "이다진" in text) {
+                Toast.makeText(this, "이다진 LED 반짝!", Toast.LENGTH_LONG).show()
+            }
+        }
 
     }
 

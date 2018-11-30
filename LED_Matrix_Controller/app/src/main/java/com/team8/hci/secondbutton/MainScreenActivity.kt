@@ -15,9 +15,9 @@ class MainScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.i("MainActivity","Started!")
-        //알람 정보를 받아오는 서비스를 실행합니다, 이거 완성되면 주석을 풀어주세요
-        val NotificationListenerintent = Intent(this,NotificationListener::class.java)
-        startService(NotificationListenerintent)
+        //알람 정보를 받아오는 서비스를 실행합니다. 에뮬레이터는 작동 불가라서 주석 처리.
+//        val NotificationListenerintent = Intent(this,NotificationListener::class.java)
+//        startService(NotificationListenerintent)
 
         val applistbutton = findViewById<TextView>(R.id.AppConfig)
         applistbutton.setOnClickListener {

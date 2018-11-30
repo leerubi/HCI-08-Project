@@ -25,6 +25,21 @@ class ApplicationListActivity : AppCompatActivity() {
         // 스위치 On한 앱 이름들을 저장하는 리스트
         val alarmOnAppsList = ArrayList<String>()
 
+        // 알림받을 앱 리스트를 불러와서 switch on 해줍니다.
+        if (appName1.text.toString() in App.prefs.appListEditText) {
+            appSwitch1.isChecked = true
+            alarmOnAppsList.add(appName1.text.toString())
+        }
+        if (appName2.text.toString() in App.prefs.appListEditText) {
+            appSwitch2.isChecked = true
+            alarmOnAppsList.add(appName2.text.toString())
+        }
+        if (appName3.text.toString() in App.prefs.appListEditText) {
+            appSwitch3.isChecked = true
+            alarmOnAppsList.add(appName3.text.toString())
+        }
+
+
         // 키워드 알림이 On인지 Off인지 불러와서 텍스트 설정
         if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
             keywordOnOffText1.text = "켜짐"
@@ -94,14 +109,25 @@ class ApplicationListActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        // 알림받을 앱 리스트를 불러와서 switch on 해줍니다.
+        if ("전화" in App.prefs.appListEditText) {
+            appSwitch1.isChecked = true
+        }
+        if ("문자" in App.prefs.appListEditText) {
+            appSwitch2.isChecked = true
+        }
+        if ("카카오톡" in App.prefs.appListEditText) {
+            appSwitch3.isChecked = true
+        }
+
         // 키워드 알림이 On인지 Off인지 불러와서 텍스트 설정
         if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
             keywordOnOffText1.text = "켜짐"
         } else {
             keywordOnOffText1.text = "꺼짐"
         }
-    }
 
+    }
 
     private fun startKeywordAlarmActivity() {
         val intent = Intent(this@ApplicationListActivity, KeywordAlarmActivity::class.java)

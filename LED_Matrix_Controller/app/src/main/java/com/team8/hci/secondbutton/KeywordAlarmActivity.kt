@@ -10,6 +10,8 @@ import android.content.Intent
 import android.service.notification.StatusBarNotification
 import android.graphics.Bitmap
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
 
 
 class KeywordAlarmActivity : AppCompatActivity() {
@@ -18,6 +20,7 @@ class KeywordAlarmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keyword_alarm)
 
+        // 키워드 알림이 On인지 Off인지 불러와서 텍스트 설정
         if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
             keywordSwitch.isChecked = true
         } else {
@@ -26,50 +29,52 @@ class KeywordAlarmActivity : AppCompatActivity() {
         Log.i("keywordSwitchOnOff", App.prefs2.keywordSwitchEditText)
         Log.i("alarmOnAppsList", App.prefs.appListEditText)
 
-        // Shared Preferences가 잘 작동하는 지 임시로 확인
+        // 키워드 알림 On/Off 정보를 text로 저장
         keywordSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 App.prefs2.keywordSwitchEditText = "켜짐"
             } else {
                 App.prefs2.keywordSwitchEditText = "꺼짐"
             }
-            Log.i("keywordSwitchOnOff", App.prefs2.keywordSwitchEditText)
+        }
+
+        val addKeywordImg = findViewById(R.id.addKeywordImg) as ImageView
+        addKeywordImg.setOnClickListener {
+        // add Keyword!
         }
     }
 
     override fun onResume() {
         super.onResume()
 
+        // 키워드 알림이 On인지 Off인지 불러와서 텍스트 설정
         if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
             keywordSwitch.isChecked = true
         } else {
             keywordSwitch.isChecked = false
         }
-        Log.i("keywordSwitchOnOff", App.prefs2.keywordSwitchEditText)
-        Log.i("alarmOnAppsList", App.prefs.appListEditText)
     }
 
-    fun onNotificationPosted(sbn: StatusBarNotification) {
-        Log.i("NotificationListener", "[snowdeer] onNotificationPosted() - " + sbn.toString())
-        Log.i("NotificationListener", "[snowdeer] PackageName:" + sbn.packageName)
-        Log.i("NotificationListener", "[snowdeer] PostTime:" + sbn.postTime)
-
-        val notificatin = sbn.notification
-        val extras = notificatin.extras
-        val title = extras.getString(Notification.EXTRA_TITLE)
-        val smallIconRes = extras.getInt(Notification.EXTRA_SMALL_ICON)
-        val largeIcon = extras.getParcelable(Notification.EXTRA_LARGE_ICON) as Bitmap
-        val text = extras.getCharSequence(Notification.EXTRA_TEXT)
-        val subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT)
-
-        Log.i("NotificationListener", "[snowdeer] Title:" + title!!)
-        Log.i("NotificationListener", "[snowdeer] Text:" + text!!)
-        Log.i("NotificationListener", "[snowdeer] Sub Text:" + subText!!)
-    }
-
-    fun onNotificationRemoved(sbn: StatusBarNotification) {
-        Log.i("NotificationListener", "[snowdeer] onNotificationRemoved() - " + sbn.toString())
-    }
-
+//    fun onNotificationPosted(sbn: StatusBarNotification) {
+//        Log.i("NotificationListener", "[snowdeer] onNotificationPosted() - " + sbn.toString())
+//        Log.i("NotificationListener", "[snowdeer] PackageName:" + sbn.packageName)
+//        Log.i("NotificationListener", "[snowdeer] PostTime:" + sbn.postTime)
+//
+//        val notificatin = sbn.notification
+//        val extras = notificatin.extras
+//        val title = extras.getString(Notification.EXTRA_TITLE)
+//        val smallIconRes = extras.getInt(Notification.EXTRA_SMALL_ICON)
+//        val largeIcon = extras.getParcelable(Notification.EXTRA_LARGE_ICON) as Bitmap
+//        val text = extras.getCharSequence(Notification.EXTRA_TEXT)
+//        val subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT)
+//
+//        Log.i("NotificationListener", "[snowdeer] Title:" + title!!)
+//        Log.i("NotificationListener", "[snowdeer] Text:" + text!!)
+//        Log.i("NotificationListener", "[snowdeer] Sub Text:" + subText!!)
+//    }
+//
+//    fun onNotificationRemoved(sbn: StatusBarNotification) {
+//        Log.i("NotificationListener", "[snowdeer] onNotificationRemoved() - " + sbn.toString())
+//    }
 
 }

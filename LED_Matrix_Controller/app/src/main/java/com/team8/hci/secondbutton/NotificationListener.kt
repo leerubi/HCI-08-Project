@@ -68,10 +68,10 @@ class NotificationListener: NotificationListenerService () {
 
         // 키워드 알림 in all apps (for now)
         if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
-            if ("키워드" in title || "키워드" in text) {
+            if ("이다진" in title || "이다진" in text) {
                 Toast.makeText(this, "키워드 LED 반짝!", Toast.LENGTH_LONG).show()
             }
-            if ("이다진" in title || "이다진" in text) {
+            if ("최승문" in title || "최승문" in text) {
                 Toast.makeText(this, "이다진 LED 반짝!", Toast.LENGTH_LONG).show()
             }
         }

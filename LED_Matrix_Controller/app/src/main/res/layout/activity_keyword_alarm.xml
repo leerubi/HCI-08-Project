@@ -52,6 +52,47 @@
         </LinearLayout>
 
         <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:hint="알림 설정할 키워드"
+                android:inputType="textPersonName"
+                android:padding="4dp"
+                android:privateImeOptions="defaultInputmode=korean"
+                android:textColor="@android:color/black" />
+
+
+            <ImageView
+                android:id="@+id/addKeywordImg"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="12dp"
+                android:padding="4dp"
+                app:srcCompat="@android:drawable/ic_input_add"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="38dp" />
+        </LinearLayout>
+
+        <View
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="36dp"
@@ -65,64 +106,96 @@
             android:fontFamily="sans-serif"
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
-            android:text="알림 받을 키워드 (0/20)"
+            android:text="알림 받을 키워드 (2/20)"
             android:textColor="#5A5A5A"
             android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:hint="예) 이다진"
-            android:inputType="textPersonName"
-            android:padding="4dp"
-            android:privateImeOptions="defaultInputmode=korean"
-            android:textColor="@android:color/black" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@android:color/darker_gray" />
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:background="@android:color/darker_gray" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/addKeywordImg"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:padding="4dp"
-                app:srcCompat="@android:drawable/ic_input_add"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="38dp" />
-
             <TextView
-                android:id="@+id/addKeywordText"
+                android:id="@+id/keyword1"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginLeft="12dp"
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="4dp"
-                android:text="키워드 추가"
+                android:text="이다진"
                 android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteY="38dp" />
 
+            <ImageView
+                android:id="@+id/delKeywordImg1"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="4dp"
+                android:padding="8dp"
+                app:srcCompat="@android:drawable/ic_delete"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="38dp" />
+
 
         </LinearLayout>
+
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/keyword2"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="최승문"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteY="38dp"/>
+
+            <ImageView
+                android:id="@+id/delKeywordImg2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="4dp"
+                android:padding="8dp"
+                app:srcCompat="@android:drawable/ic_delete"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="38dp" />
+
+
+        </LinearLayout>
+
 
 
         <View

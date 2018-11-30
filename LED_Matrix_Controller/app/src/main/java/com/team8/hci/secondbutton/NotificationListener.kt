@@ -33,6 +33,7 @@ class NotificationListener: NotificationListenerService () {
 */
     override fun onNotificationPosted(sbn: StatusBarNotification) {
 
+        Log.i("NotificationListener", "PackageName:${sbn.packageName}")
         val notificatin = sbn.getNotification()
         val extras = notificatin.extras
         val title = extras.getString(Notification.EXTRA_TITLE)
@@ -41,6 +42,7 @@ class NotificationListener: NotificationListenerService () {
         Log.i("NotificationListener", "Title:$title")
         Log.i("NotificationListener", "Text:$text")
         Log.i("NotificationListener", "Sub Text:$subText")
+
     }
 
     override fun onNotificationRemoved(sbn: StatusBarNotification?) {

@@ -18,14 +18,35 @@ class KeywordAlarmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keyword_alarm)
 
+        if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
+            keywordSwitch.isChecked = true
+        } else {
+            keywordSwitch.isChecked = false
+        }
+        Log.i("keywordSwitchOnOff", App.prefs2.keywordSwitchEditText)
+        Log.i("alarmOnAppsList", App.prefs.appListEditText)
+
         // Shared Preferences가 잘 작동하는 지 임시로 확인
         keywordSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                Log.i("alarmOnAppsList", App.prefs.appListEditText)
+                App.prefs2.keywordSwitchEditText = "켜짐"
             } else {
-                Log.i("alarmOnAppsList", App.prefs.appListEditText)
+                App.prefs2.keywordSwitchEditText = "꺼짐"
             }
+            Log.i("keywordSwitchOnOff", App.prefs2.keywordSwitchEditText)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
+            keywordSwitch.isChecked = true
+        } else {
+            keywordSwitch.isChecked = false
+        }
+        Log.i("keywordSwitchOnOff", App.prefs2.keywordSwitchEditText)
+        Log.i("alarmOnAppsList", App.prefs.appListEditText)
     }
 
     fun onNotificationPosted(sbn: StatusBarNotification) {

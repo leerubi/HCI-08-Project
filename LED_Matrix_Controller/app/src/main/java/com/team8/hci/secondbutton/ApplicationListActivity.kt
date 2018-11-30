@@ -13,6 +13,7 @@ import android.webkit.JavascriptInterface
 import android.R.id.edit
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_application_list.*
+import kotlinx.android.synthetic.main.activity_keyword_alarm.*
 
 
 class ApplicationListActivity : AppCompatActivity() {
@@ -21,7 +22,20 @@ class ApplicationListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_application_list)
 
+        // 스위치 On한 앱 이름들을 저장하는 리스트
         val alarmOnAppsList = ArrayList<String>()
+
+        // 키워드 알림이 On인지 Off인지 불러와서 텍스트 설정
+        if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
+            keywordOnOffText1.text = "켜짐"
+        } else {
+            keywordOnOffText1.text = "꺼짐"
+        }
+
+        // 키워드 알림이 On인지 Off인지 저장
+        App.prefs2.keywordSwitchEditText = keywordOnOffText1.text.toString()
+        Log.i("keywordSwitchOnOff", App.prefs2.keywordSwitchEditText)
+
 
         // Switch Check Listeners
         // 앱의 스위치를 On하면 앱 이름을 리스트에 저장 / Off하면 앱 이름을 리스트에서 삭제
@@ -76,6 +90,18 @@ class ApplicationListActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        // 키워드 알림이 On인지 Off인지 불러와서 텍스트 설정
+        if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
+            keywordOnOffText1.text = "켜짐"
+        } else {
+            keywordOnOffText1.text = "꺼짐"
+        }
+    }
+
 
     private fun startKeywordAlarmActivity() {
         val intent = Intent(this@ApplicationListActivity, KeywordAlarmActivity::class.java)

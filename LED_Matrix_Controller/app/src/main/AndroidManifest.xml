@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".App">
 
         <!-- 메인 화면을 나타내는 Activity입니다. 시작하자마자 현재 알람 리스트를 받아오는 AlarmListfetcherService를 실행합니다 -->
         <activity android:name=".MainScreenActivity">
@@ -17,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!-- 현재 어플의 리스트를 보여주는 Activity입니다 -->
         <activity android:name=".ApplicationListActivity">
 

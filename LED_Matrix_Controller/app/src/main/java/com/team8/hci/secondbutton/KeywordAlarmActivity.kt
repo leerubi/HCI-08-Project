@@ -18,12 +18,15 @@ class KeywordAlarmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keyword_alarm)
 
+        // alarmOnAppsList를 불러올 Shared Preferences
+        val pref = this.getPreferences(0)
+
         keywordSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                Toast.makeText(this, "Switch on.", Toast.LENGTH_LONG).show()
+                Log.i("alarmOnAppsList", App.prefs.myEditText)
 
             } else {
-                Toast.makeText(this, "Switch Off.", Toast.LENGTH_LONG).show()
+                Log.i("alarmOnAppsList", App.prefs.myEditText)
             }
         }
     }

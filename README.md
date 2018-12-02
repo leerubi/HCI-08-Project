@@ -85,8 +85,8 @@ Progress Report
 
 - 12/5 (수) 오후 3시 반 일물실 실험실에서 아크릴판 자르고 부착 완료.
 - 12/7 (금) Prototype evaluation 오후 2시 지곡회의실
-  - 설문지 작성
-  - Task 설계
+  - [설문지 작성](https://goo.gl/forms/bfaJq28ojb6VUp4z2)
+  - [Task 설계](http://www.11math.com/calc#D9133F7E)
 
 
 ### Milestone 4 (18/12/10 ~ 18/12/14)

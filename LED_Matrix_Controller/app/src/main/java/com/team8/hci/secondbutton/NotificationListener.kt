@@ -32,7 +32,7 @@ class NotificationListener: NotificationListenerService () {
     }
 */
     override fun onNotificationPosted(sbn: StatusBarNotification) {
-
+    Log.i("NotificationListener","Package:${sbn.packageName}")
         val notificatin = sbn.getNotification()
         val extras = notificatin.extras
         val title = extras.getString(Notification.EXTRA_TITLE)
@@ -53,7 +53,13 @@ class NotificationListener: NotificationListenerService () {
         super.onDestroy()
 
     }
-
+    //앱이 꺼져도 알람을 계속 주는 현상 해결
+    override fun onTaskRemoved(rootIntent: Intent) {
+        //unregister listeners
+        //do any other cleanup if required
+        //stop service
+        stopSelf()
+    }
     private fun isNotiPermissionAllowed(): Boolean {
         val notiListenerSet = NotificationManagerCompat.getEnabledListenerPackages(this)
         val myPackageName = packageName

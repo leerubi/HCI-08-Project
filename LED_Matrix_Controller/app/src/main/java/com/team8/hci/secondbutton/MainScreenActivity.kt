@@ -19,7 +19,6 @@ import java.util.*
 
 
 class MainScreenActivity : AppCompatActivity() {
-
     lateinit var BtService:BluetoothService
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -135,6 +134,7 @@ class BluetoothService(mainAC: Activity) : Thread()  {
     }
     private fun connectDevice(bluetoothDevice: BluetoothDevice)
     {
+        Log.i("Bluetooth_Connect","ConnectDevice called");
         //디바이스 찾았는데 연결 더 해줄 필요 없음
         BtAdapter.cancelDiscovery()
         //페어링된 기기 중 원하는 기기에 대해 연결한 socket을 형성
@@ -143,9 +143,9 @@ class BluetoothService(mainAC: Activity) : Thread()  {
         socket.connect()
         var outputStream=socket.getOutputStream()
         var inputStream=socket.getInputStream()
-
+        var s = "A"
         //정보 보내기!
-        //outputStream.write(string.getBytes())
+        outputStream.write(s.toByteArray())
     }
 
     public fun getDeviceInfo(data: Intent)

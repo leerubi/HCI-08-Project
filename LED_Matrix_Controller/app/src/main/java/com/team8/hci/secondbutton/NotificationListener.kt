@@ -1,6 +1,7 @@
 package com.team8.hci.secondbutton
 
 import android.app.Notification
+import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import android.os.IBinder
 import android.service.notification.NotificationListenerService
@@ -9,6 +10,8 @@ import android.support.v4.app.NotificationManagerCompat
 import android.util.Log
 
 class NotificationListener: NotificationListenerService () {
+
+    lateinit var LED_Matrix_socket : BluetoothSocket
 
     override fun onCreate() {
         super.onCreate()

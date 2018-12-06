@@ -11,14 +11,15 @@ import android.util.Log
 import android.widget.Toast
 import com.team8.hci.secondbutton.R.id.*
 import kotlinx.android.synthetic.main.activity_application_list.*
+import java.sql.Types.NULL
 
 class NotificationListener: NotificationListenerService () {
 
     lateinit var LED_Matrix_socket : BluetoothSocket
     //TODO(지금은 임시로 각 앱에 대한 텍스트를 선언했지만, 추후 변경해야 합니다)
-    var KakaoText = "kakao"
-    var SMSText = "message"
-    var CallText = "call"
+    var KakaoText = "kakao\n"
+    var SMSText = "message\n"
+    var CallText = "call\n"
     override fun onCreate() {
         super.onCreate()
         Log.i("NotificationListener", "onCreate()");
@@ -27,6 +28,7 @@ class NotificationListener: NotificationListenerService () {
         if (!isPermissionAllowed) {
             val intent = Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
             startActivity(intent)
+            Log.i("NotificationListener","Start!")
         }
     }
 
@@ -34,7 +36,7 @@ class NotificationListener: NotificationListenerService () {
         return super.onStartCommand(intent, flags, startId)
         TODO("not Implemented")
     }
-
+/*
     override fun onBind(intent: Intent): IBinder? {
         super.onBind(intent)
         var socketlist = intent.getSerializableExtra("Socket") as ArrayList<BluetoothSocket>
@@ -42,7 +44,7 @@ class NotificationListener: NotificationListenerService () {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 
         return null
-    }
+    }*/
 
     override fun onNotificationPosted(sbn: StatusBarNotification) {
     Log.i("NotificationListener","Package:${sbn.packageName}")
@@ -55,7 +57,14 @@ class NotificationListener: NotificationListenerService () {
         Log.i("NotificationListener", "Title:$title")
         Log.i("NotificationListener", "Text:$text")
         Log.i("NotificationListener", "Sub Text:$subText")
-
+        var appState = applicationContext as App
+        if(appState.getSocket() == null)
+        {
+            Log.i("NotificationListener", "No Device Connected!")
+            return
+        }
+        else
+            LED_Matrix_socket = appState.getSocket() as BluetoothSocket
         // 알림 switch on 한 앱에서 알림이 오면 LED 작동
         if ("android.incallui" in sbn.packageName) {
             if ("전화" in App.prefs.appListEditText) {
@@ -64,14 +73,14 @@ class NotificationListener: NotificationListenerService () {
             }
         }
 
-        if ("android.messaging" in sbn.packageName) {
+        else if ("android.messaging" in sbn.packageName) {
             if ("메시지" in App.prefs.appListEditText) {
                 LED_Matrix_socket.outputStream.write(SMSText.toByteArray())
                 Toast.makeText(this, "메시지 LED 반짝!", Toast.LENGTH_LONG).show()
             }
         }
 
-        if ("com.kakao.talk" in sbn.packageName) {
+        else if ("com.kakao.talk" in sbn.packageName) {
             if ("카카오톡" in App.prefs.appListEditText) {
                 LED_Matrix_socket.outputStream.write(KakaoText.toByteArray())
                 Toast.makeText(this, "카카오톡 LED 반짝!", Toast.LENGTH_LONG).show()

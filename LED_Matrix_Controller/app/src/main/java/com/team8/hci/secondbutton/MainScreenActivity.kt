@@ -22,6 +22,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.os.IBinder
 import android.content.ServiceConnection
+import android.widget.Toast
+import org.w3c.dom.Text
 import java.util.logging.Logger.global
 
 
@@ -29,31 +31,12 @@ class MainScreenActivity : AppCompatActivity() {
     lateinit var BtService:BluetoothService
     lateinit var BtSocket:BluetoothSocket
     lateinit var NotificationListenerintent:Intent
-
-    lateinit var ms:NotificationListener // 서비스 객체
-    var isService = false // 서비스 중인 확인용
-    var conn = object : ServiceConnection {
-        override fun onServiceConnected(name: ComponentName,
-                                        service: IBinder) {
-            // 서비스와 연결되었을 때 호출되는 메서드
-            // 서비스 객체를 전역변수로 저장
-            val mb = service as NotificationListener
-
-            isService = true
-        }
-
-        override fun onServiceDisconnected(name: ComponentName) {
-            // 서비스와 연결이 끊겼을 때 호출되는 메서드
-            isService = false
-        }
-    }
+    lateinit var ms:NotificationListener // 서비스 객
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.i("MainActivity","Started!")
-
-
 
         //알람 정보를 받아오는 서비스를 실행합니다.
         NotificationListenerintent = Intent(this,NotificationListener::class.java)
@@ -63,28 +46,58 @@ class MainScreenActivity : AppCompatActivity() {
         //새로운 Handler를 만듭니다, 블루투스 연결을 서브스레드에서 진행하게 하고, 그 결과를 다시 받아오게 할 수 있습니다.
         val bluetoothconnection = findViewById<TextView>(R.id.bluetoothConnection)
         bluetoothconnection.setOnClickListener {
+            Toast.makeText(this, "LED Matrix 탐색을 시도합니다...", Toast.LENGTH_LONG).show()
             BtService = BluetoothService(this,this)
             Thread(BtService).start()
             //TODO(연결된 상태에서는 이거 실행하지 않게 해야 합니다)
+        }
+
+        val Pattern1button = findViewById<TextView>(R.id.Pattern1)
+        Pattern1button.setOnClickListener {
+            var appState = applicationContext as App
+            var socket = appState.getSocket()
+            var s = "1"
+            if(socket != null) {
+                Log.i("DebugButton","Pattern1Pressed")
+                socket.outputStream.write(s.toByteArray())
+            }
+        }
+
+        val Pattern2button = findViewById<TextView>(R.id.Pattern2)
+        Pattern2button.setOnClickListener {
+            var appState = applicationContext as App
+            var socket = appState.getSocket()
+            var s = "2"
+            if(socket != null) {
+                Log.i("DebugButton","Pattern2Pressed")
+                socket.outputStream.write(s.toByteArray())
+            }
         }
         //앱 리스트 버튼입니다.
         val applistbutton = findViewById<TextView>(R.id.AppConfig)
         applistbutton.setOnClickListener {
             StartAppListActivity()
         }
+
     }
     private fun StartAppListActivity()
     {
         val intent = Intent(this, ApplicationListActivity::class.java)
         startActivity(intent)
     }
-    public fun setBluetoothSocket(soc : BluetoothSocket)
+    fun setBluetoothSocket(soc : BluetoothSocket)
     {
+        var appState = applicationContext as App
+        appState.setSocket(soc)
+
+        /*
         var BtSocketList = ArrayList<BluetoothSocket>()
         BtSocketList.add(soc)
         var SocketIntent = Intent(this,NotificationListenerintent.javaClass)
-        SocketIntent.putExtra("Socket",BtSocketList)
+        SocketIntent.putExtra("Socket",soc)
+        Log.i("Bluetooth_Connect","Socket called")
         bindService(SocketIntent,conn,Context.BIND_AUTO_CREATE)
+        */
     }
 
     override fun onActivityResult(requestCode: Int, resultCode : Int, data: Intent?) {
@@ -142,6 +155,7 @@ class BluetoothService(mainAC: Activity,mainCl: MainScreenActivity) : Thread()  
                     //MAC 주소를 사용하는것이 안전하지만 일단은 이름으로
                     if(device.name == Matrix_Name)
                     {
+                        Log.i("Bluetooth", "Try to Connect Paired LED Matrix")
                         //본격적인 연결 시작
                         connectDevice(mainCl,device)
                         is_paired = true
@@ -150,8 +164,9 @@ class BluetoothService(mainAC: Activity,mainCl: MainScreenActivity) : Thread()  
                 }
             }
             //페어링 된 기기 중에는 없네 새로 찾아봐
-            else if(!is_paired)
+            if(!is_paired)
             {
+                Log.i("Bluetooth", "Try to find New LED Matrix")
                 //블루투스 연결 시작(새로운 Activity를 띄운다.)
                 var BluetoothIntent = Intent(Settings.ACTION_BLUETOOTH_SETTINGS)
                 mainAc.startActivityForResult(BluetoothIntent, 1)
@@ -175,19 +190,16 @@ class BluetoothService(mainAC: Activity,mainCl: MainScreenActivity) : Thread()  
     }
     private fun connectDevice(mainCl : MainScreenActivity, bluetoothDevice: BluetoothDevice)
     {
-        Log.i("Bluetooth_Connect","ConnectDevice called");
+
         //디바이스 찾았는데 연결 더 해줄 필요 없음
         //BtAdapter.cancelDiscovery()
         //TODO(실제로 연결되었는지 검증해줘야함)
         //페어링된 기기 중 원하는 기기에 대해 연결한 socket을 형성
         var socket = bluetoothDevice.createRfcommSocketToServiceRecord(MY_UUID)
+        Log.i("Bluetooth_Connect","ConnectDevice called")
         //나는 한다 연결
         socket.connect()
-        var outputStream=socket.getOutputStream()
-        var inputStream=socket.getInputStream()
-        var s = "A"
-        //정보 보내기!
-        outputStream.write(s.toByteArray())
+        sleep(3000)
         mainCl.setBluetoothSocket(socket)
     }
 

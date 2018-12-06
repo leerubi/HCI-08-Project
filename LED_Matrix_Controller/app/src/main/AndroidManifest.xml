@@ -43,7 +43,7 @@
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
             android:label="@string/listener_service"
             android:exported="false"
-            android:stopWithTask="false" >             <!-- 앱이 정지되도 Service는 자동으로 정지되지 않습니다(수동으로 해둠) -->
+            android:stopWithTask="true" >             <!-- 앱이 정지되도 Service는 자동으로 정지되지 않습니다(수동으로 해둠) -->
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>

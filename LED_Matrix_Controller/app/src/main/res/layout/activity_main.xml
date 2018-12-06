@@ -67,4 +67,29 @@
         app:srcCompat="@mipmap/app_play"
         tools:srcCompat="@mipmap/app_play" />
 
+    <Button
+        android:id="@+id/Pattern1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="162dp"
+        android:text="Pattern1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothConnection" />
+
+    <Button
+        android:id="@+id/Pattern2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="162dp"
+        android:text="Pattern2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Pattern1" />
+
 </android.support.constraint.ConstraintLayout>

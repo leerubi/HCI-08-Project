@@ -182,7 +182,10 @@ void loop() {
         clearMatrix();
       }
       if(blink_count > 8)
+      {
         myString="";  //myString 변수값 초기화
+        blink_count = 0;
+      }
       delay(500);
 }
 /*

@@ -63,25 +63,32 @@ Progress Report
 
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
-|         | 5 units  | UI_S02 | 메인 버튼1(패턴 관리) UI 구현  |
+|     2 units    | 5 units  | UI_S02 | 메인 버튼1(패턴 관리) UI 구현  |
 |    4 units    | 5 units  | UI_S03 | 메인 버튼2(어플 연동) UI 구현  |
-|         | 5 units   | LED_S02 |  LED Matrix 납땜  |
-|         | 1 units  | AD_S01 | 어플과 LED Matrix 간 블루투스 통신  |
-|         | 1 units  | AD_S02 | 패턴 샘플 띄워보기  |
-|         | 4 units  | REP_S01 | 첫번째 프로젝트 레포트 작성 및 데모 준비  |
+|    15 units     | 5 units   | LED_S02 |  LED Matrix 납땜  |
+|    1 units     | 1 units  | AD_S02 | 패턴 샘플 띄워보기  |
+|    4 units     | 4 units  | REP_S01 | 첫번째 프로젝트 레포트 작성 및 데모 준비  |
 
 - ``아크릴을 자를 수 있는 일물실 실험실을 빌릴 수 있는지 연락해보기.`` (18/11/26 성빈이 컨택 완료)
 - 글루건, 가위에 반납해야 함.
-- 피드백을 바탕으로 Milestone task를 수정할 예정. (18/11/27 미팅)
-
+- 피드백을 바탕으로 Milestone task를 수정. (18/11/27 미팅)
+- 프로젝트 레포트 셀프 피드백
+  - 검토를 꼼꼼히 할 것 (오타, 이상한 문장, 출처, 간트 차트에 쓸데 없는 줄 등 끝마무리가 허술했음)
+  - 하루에 다 하려고 하지 말 것
 
 ### Milestone 3 (18/12/03 ~ 18/12/09)
 
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
+|         | 1 units  | AD_S01 | 어플과 LED Matrix 간 블루투스 통신  |
 |         |  5 units   | UI_S04 |  패턴 편집 및 적용 기능 구현(메인 버튼1)   |
 |         |  5 units   | UI_S05 |  LED Matrix-애플리케이션 간 알림 설정 기능 구현(메인 버튼2)   |
 |         |  2 units    | AD_S03 |   패턴 이미지 샘플 만들기    |
+
+- 12/5 (수) 오후 3시 반 일물실 실험실에서 아크릴판 자르고 부착 완료.
+- 12/7 (금) Prototype evaluation 오후 2시 지곡회의실
+  - [설문지 작성](https://goo.gl/forms/bfaJq28ojb6VUp4z2)
+  - [Task 설계](http://www.11math.com/calc#D9133F7E)
 
 
 ### Milestone 4 (18/12/10 ~ 18/12/14)
@@ -120,3 +127,4 @@ implemented by [Dajin Lee](https://github.com/leerubi/)
   - [Notification information1](http://snowdeer.github.io/android/2017/03/26/notification-listener-service-sample/)
   - [Notification information2](http://susemi99.kr/1413)
   - [Broadcast Receiver](https://developer88.tistory.com/34)
+  - [Bluetooth application development](https://www.intorobotics.com/how-to-develop-simple-bluetooth-android-application-to-control-a-robot-remote/)

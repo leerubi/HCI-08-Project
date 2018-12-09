@@ -32,7 +32,7 @@ class MainScreenActivity : AppCompatActivity() {
     lateinit var BtSocket:BluetoothSocket
     lateinit var NotificationListenerintent:Intent
     lateinit var ms:NotificationListener // 서비스 객
-
+    var AppState = applicationContext as App
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,13 +42,20 @@ class MainScreenActivity : AppCompatActivity() {
         NotificationListenerintent = Intent(this,NotificationListener::class.java)
         startService(NotificationListenerintent)
 
-
+        // 인공지능
+        //송중기
+        //호랑이
+        //애완
+        AppState.AddKeyword("인공지능")
+        AppState.AddKeyword("송중기")
+        AppState.AddKeyword("호랑이")
+        AppState.AddKeyword("애완")
         //새로운 Handler를 만듭니다, 블루투스 연결을 서브스레드에서 진행하게 하고, 그 결과를 다시 받아오게 할 수 있습니다.
         val bluetoothconnection = findViewById<TextView>(R.id.bluetoothConnection)
         bluetoothconnection.setOnClickListener {
-            var AppState = applicationContext as App
+
+            Toast.makeText(this, "LED Matrix 탐색을 시도합니다...", Toast.LENGTH_LONG).show()
             if(AppState.getSocket() == null) {
-                Toast.makeText(this, "LED Matrix 탐색을 시도합니다...", Toast.LENGTH_LONG).show()
                 BtService = BluetoothService(this, this)
                 Thread(BtService).start()
             }

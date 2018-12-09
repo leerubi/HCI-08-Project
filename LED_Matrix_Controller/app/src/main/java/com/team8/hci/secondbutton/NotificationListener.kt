@@ -90,18 +90,19 @@ class NotificationListener: NotificationListenerService () {
 
         // 키워드 알림 in all apps (for now)
         //   var is_on = "켜짐"
+
         if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
             if (title == null || text == null)
                 return
-            if ("이다진" in title || "이다진" in text) {
-                LED_Matrix_socket.outputStream.write(Text1.toByteArray())
-                Toast.makeText(this, "이다진 LED 반짝!", Toast.LENGTH_LONG).show()
-                Appstate.setCurrentApp(sbn.packageName)
-            }
-            if ("최승문" in title || "최승문" in text) {
-                LED_Matrix_socket.outputStream.write(Text1.toByteArray())
-                Toast.makeText(this, "최승문 LED 반짝!", Toast.LENGTH_LONG).show()
-                Appstate.setCurrentApp(sbn.packageName)
+            var keywordlist = appState.getKeywordList()
+            if (keywordlist != null) {
+                for (K in keywordlist) {
+                    if (K in title || K in text) {
+                        LED_Matrix_socket.outputStream.write(Text1.toByteArray())//지금은 키워드별로 다른 패턴을 보내지 못하지만 추후 변경 예정입니다.
+                        Toast.makeText(this, "키워드 LED 반짝!", Toast.LENGTH_LONG).show()
+                        Appstate.setCurrentApp(sbn.packageName)
+                    }
+                }
             }
         }
         // 알림 switch on 한 앱에서 알림이 오면 LED 작동

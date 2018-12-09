@@ -19,7 +19,27 @@ public class App : Application() {
         lateinit var prefs : MySharedPreferences
         lateinit var prefs2 : MySharedPreferences
         lateinit var cur_app : String
-        var is_keywordMode = true
+        lateinit var keyword_list : ArrayList<String>
+    }
+    fun AddKeyword(keyword : String)
+    {
+        keyword_list.add(keyword)
+    }
+    fun RemoveKeyword(keyword: String)
+    {
+        keyword_list.remove(keyword)
+    }
+    fun getKeywordList() : ArrayList<String>?
+    {
+        try {
+            if (keyword_list != null)
+                return keyword_list
+        } catch (e: UninitializedPropertyAccessException)
+        {
+            Log.i("NotificationListener","keyword_list has not been initialized")
+            return null
+        }
+        return null
     }
     fun setCurrentApp(name : String)
     {

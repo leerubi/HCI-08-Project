@@ -24,6 +24,7 @@ static bool Blink = true;
 static int frame = 0;
 static long pattern_time;
 long last_time;
+        int blink_count = 0;
 COROUTINE(kakaoText)
 {
   COROUTINE_BEGIN();
@@ -141,7 +142,7 @@ void loop() {
         kakaotalk.suspend();
         String cache = "";
         char myChar;
-        int blink_count = 0;
+
     while(mySerial.available())  //mySerial에 전송된 값이 있으면
     {
       blink_count = 0;
@@ -164,25 +165,30 @@ void loop() {
       }
       else if(myString == "2")
       {
+                blink_count ++;
         clearMatrix();
         pattern2.runCoroutine();
 
       }
       else if(myString=="call")
       {
+                blink_count ++;
         doPlasma();
       }
       else if(myString=="message")
       {
+                blink_count ++;
         clearMatrix();
         kakaotalk.runCoroutine();
       }
       else if(myString=="clear")
       {
+                blink_count=0;
         clearMatrix();
       }
       if(blink_count > 8)
       {
+        clearMatrix();
         myString="";  //myString 변수값 초기화
         blink_count = 0;
       }

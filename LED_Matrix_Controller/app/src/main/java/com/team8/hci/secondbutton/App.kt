@@ -78,6 +78,7 @@ public class App : Application() {
     override fun onCreate() {
         prefs = MySharedPreferences(applicationContext)
         prefs2 = MySharedPreferences(applicationContext)
+        
         super.onCreate()
     }
 }

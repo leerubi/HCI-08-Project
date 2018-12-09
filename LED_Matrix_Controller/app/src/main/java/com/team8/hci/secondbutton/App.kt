@@ -18,12 +18,31 @@ public class App : Application() {
         lateinit var BtSocket : BluetoothSocket
         lateinit var prefs : MySharedPreferences
         lateinit var prefs2 : MySharedPreferences
+        lateinit var cur_app : String
+        var is_keywordMode = true
     }
-    public fun setSocket(soc: BluetoothSocket)
+    fun setCurrentApp(name : String)
+    {
+        cur_app = name
+    }
+    fun getCurrentApp() : String?
+    {
+        try {
+            if (cur_app != null && cur_app != "0")
+                return cur_app
+        } catch (e: UninitializedPropertyAccessException)
+        {
+            Log.i("NotificationListener","cur_app has not been initialized")
+            return null
+        }
+        return null
+    }
+
+    fun setSocket(soc: BluetoothSocket)
     {
         BtSocket = soc
     }
-    public fun getSocket() : BluetoothSocket? {
+    fun getSocket() : BluetoothSocket? {
         try {
             if (BtSocket != null)
                 return BtSocket

@@ -46,9 +46,14 @@ class MainScreenActivity : AppCompatActivity() {
         //새로운 Handler를 만듭니다, 블루투스 연결을 서브스레드에서 진행하게 하고, 그 결과를 다시 받아오게 할 수 있습니다.
         val bluetoothconnection = findViewById<TextView>(R.id.bluetoothConnection)
         bluetoothconnection.setOnClickListener {
-            Toast.makeText(this, "LED Matrix 탐색을 시도합니다...", Toast.LENGTH_LONG).show()
-            BtService = BluetoothService(this,this)
-            Thread(BtService).start()
+            var AppState = applicationContext as App
+            if(AppState.getSocket() == null) {
+                Toast.makeText(this, "LED Matrix 탐색을 시도합니다...", Toast.LENGTH_LONG).show()
+                BtService = BluetoothService(this, this)
+                Thread(BtService).start()
+            }
+            else
+                Toast.makeText(this, "LED Matrix가 이미 연결되어 있습니다!", Toast.LENGTH_LONG).show()
             //TODO(연결된 상태에서는 이거 실행하지 않게 해야 합니다)
         }
 

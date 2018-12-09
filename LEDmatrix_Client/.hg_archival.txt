@@ -1,0 +1,5 @@
+repo: 879e22f19a862487a3ea8b483ee76b9ac79c870a
+node: 26ed3c51912af6fac5f1304629c7b4ab7ac8ca4b
+branch: default
+latesttag: birthday_release
+latesttagdistance: 2

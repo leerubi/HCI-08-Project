@@ -78,7 +78,8 @@ public class App : Application() {
     override fun onCreate() {
         prefs = MySharedPreferences(applicationContext)
         prefs2 = MySharedPreferences(applicationContext)
-        
+        keyword_list = ArrayList()
+
         super.onCreate()
     }
 }

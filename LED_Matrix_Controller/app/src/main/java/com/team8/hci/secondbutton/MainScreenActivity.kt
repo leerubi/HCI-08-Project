@@ -24,6 +24,8 @@ import android.os.IBinder
 import android.content.ServiceConnection
 import android.widget.Toast
 import org.w3c.dom.Text
+import java.io.IOException
+import java.lang.Thread.sleep
 import java.util.logging.Logger.global
 
 
@@ -32,9 +34,10 @@ class MainScreenActivity : AppCompatActivity() {
     lateinit var BtSocket:BluetoothSocket
     lateinit var NotificationListenerintent:Intent
     lateinit var ms:NotificationListener // 서비스 객
-    var AppState = applicationContext as App
+    lateinit var AppState : App
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppState = applicationContext as App
         setContentView(R.layout.activity_main)
         Log.i("MainActivity","Started!")
 
@@ -45,16 +48,17 @@ class MainScreenActivity : AppCompatActivity() {
         // 인공지능
         //송중기
         //호랑이
-        /*
+
         AppState.AddKeyword("인공지능" as String)
         AppState.AddKeyword("송중기" as String)
         AppState.AddKeyword("호랑이" as String)
-        AppState.AddKeyword("애완" as String) */
+        AppState.AddKeyword("애완" as String)
         //새로운 Handler를 만듭니다, 블루투스 연결을 서브스레드에서 진행하게 하고, 그 결과를 다시 받아오게 할 수 있습니다.
         val bluetoothconnection = findViewById<TextView>(R.id.bluetoothConnection)
         bluetoothconnection.setOnClickListener {
 
             Toast.makeText(this, "LED Matrix 탐색을 시도합니다...", Toast.LENGTH_LONG).show()
+            sleep(100)
             if(AppState.getSocket() == null) {
                 BtService = BluetoothService(this, this)
                 Thread(BtService).start()
@@ -210,8 +214,15 @@ class BluetoothService(mainAC: Activity,mainCl: MainScreenActivity) : Thread()  
         var socket = bluetoothDevice.createRfcommSocketToServiceRecord(MY_UUID)
         Log.i("Bluetooth_Connect","ConnectDevice called")
         //나는 한다 연결
-        socket.connect()
-        sleep(3000)
+        try {
+            socket.connect()
+        }
+        catch(e : IOException){
+                socket.close()
+            Log.d("Bluetooth_Connect","Connection Failed!")
+            Toast.makeText(mainCl,"LED Matrix를 찾을 수 없습니다", Toast.LENGTH_LONG).show()
+            return
+        }
         mainCl.setBluetoothSocket(socket)
     }
 

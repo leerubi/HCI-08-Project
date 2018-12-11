@@ -26,8 +26,7 @@ class NotificationListener: NotificationListenerService () {
     lateinit var Appstate: App
     override fun onCreate() {
         super.onCreate()
-        Log.i("NotificationListener", "onCreate()");
-
+        Log.i("NotificationListener", "onCreate()")
         val isPermissionAllowed = isNotiPermissionAllowed()
         if (!isPermissionAllowed) {
             val intent = Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")

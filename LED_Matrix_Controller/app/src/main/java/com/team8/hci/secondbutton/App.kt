@@ -15,7 +15,7 @@ public class App : Application() {
 
 
     companion object {
-        lateinit var BtSocket : BluetoothSocket
+        var BtSocket = null as BluetoothSocket?
         lateinit var prefs : MySharedPreferences
         lateinit var prefs2 : MySharedPreferences
         lateinit var cur_app : String
@@ -58,9 +58,12 @@ public class App : Application() {
         return null
     }
 
-    fun setSocket(soc: BluetoothSocket)
+    fun setSocket(soc: BluetoothSocket?)
     {
+        if(soc != null)
         BtSocket = soc
+        else
+            BtSocket = null
     }
     fun getSocket() : BluetoothSocket? {
         try {

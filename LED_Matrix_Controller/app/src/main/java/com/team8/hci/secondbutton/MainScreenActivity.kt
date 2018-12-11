@@ -56,22 +56,35 @@ class MainScreenActivity : AppCompatActivity() {
         //새로운 Handler를 만듭니다, 블루투스 연결을 서브스레드에서 진행하게 하고, 그 결과를 다시 받아오게 할 수 있습니다.
         val bluetoothconnection = findViewById<TextView>(R.id.bluetoothConnection)
         bluetoothconnection.setOnClickListener {
-
+            //TODO(Toast 알람이 안뜨는 버그 해결해야 함)
             Toast.makeText(this, "LED Matrix 탐색을 시도합니다...", Toast.LENGTH_LONG).show()
             sleep(100)
-            if(AppState.getSocket() == null) {
+            var socket = AppState.getSocket()
+            if(socket == null) {
                 BtService = BluetoothService(this, this)
                 Thread(BtService).start()
             }
             else
-                Toast.makeText(this, "LED Matrix가 이미 연결되어 있습니다!", Toast.LENGTH_LONG).show()
-            //TODO(연결된 상태에서는 이거 실행하지 않게 해야 합니다)
+            {
+                //이미 socket 정보가 등록되어 있더라도, 확인해줍니다. 등록된 장치가 연결되지 않았으면 리셋해줍니다.
+                try {
+                    var t = "clear" as String
+                    socket.outputStream.write(t.toByteArray())
+                    Toast.makeText(this, "LED Matrix가 이미 연결되어 있습니다!", Toast.LENGTH_LONG).show()
+                }
+                catch (e : IOException)
+                {
+                    AppState.setSocket(null)
+                    BtService = BluetoothService(this, this)
+                    Thread(BtService).start()
+                }
+
+            }
         }
 
         val Pattern1button = findViewById<TextView>(R.id.Pattern1)
         Pattern1button.setOnClickListener {
-            var appState = applicationContext as App
-            var socket = appState.getSocket()
+            var socket = AppState.getSocket()
             var s = "1"
             if(socket != null) {
                 Log.i("DebugButton","Pattern1Pressed")
@@ -81,11 +94,20 @@ class MainScreenActivity : AppCompatActivity() {
 
         val Pattern2button = findViewById<TextView>(R.id.Pattern2)
         Pattern2button.setOnClickListener {
-            var appState = applicationContext as App
-            var socket = appState.getSocket()
+
+            var socket = AppState.getSocket()
             var s = "2"
             if(socket != null) {
                 Log.i("DebugButton","Pattern2Pressed")
+                socket.outputStream.write(s.toByteArray())
+            }
+        }
+        val Clearbutton = findViewById<TextView>(R.id.PatternClear)
+        Clearbutton .setOnClickListener {
+            var socket = AppState.getSocket()
+            var s = "clear"
+            if(socket != null) {
+                Log.i("DebugButton","PatternClearPressed")
                 socket.outputStream.write(s.toByteArray())
             }
         }
@@ -130,7 +152,6 @@ class MainScreenActivity : AppCompatActivity() {
                 }
                 else
                     Log.i("Bluetooth_Connection","Invalid data!")
-                // TODO("Validate Connected Bluetooth Device)
             }
         }
     }
@@ -209,7 +230,6 @@ class BluetoothService(mainAC: Activity,mainCl: MainScreenActivity) : Thread()  
 
         //디바이스 찾았는데 연결 더 해줄 필요 없음
         //BtAdapter.cancelDiscovery()
-        //TODO(실제로 연결되었는지 검증해줘야함)
         //페어링된 기기 중 원하는 기기에 대해 연결한 socket을 형성
         var socket = bluetoothDevice.createRfcommSocketToServiceRecord(MY_UUID)
         Log.i("Bluetooth_Connect","ConnectDevice called")

@@ -23,6 +23,7 @@ String myString=""; //받는 문자열
 static bool Blink = true;
 static int frame = 0;
 static long pattern_time;
+static uint8_t *sprite;
 long last_time;
         int blink_count = 0;
 COROUTINE(kakaoText)
@@ -59,16 +60,13 @@ COROUTINE(kakaoText)
   COROUTINE_END();
 }
 
-COROUTINE(pattern2)
+COROUTINE(Sprite_Blink)
 {
-  COROUTINE_BEGIN();
+   COROUTINE_BEGIN();
 
    while(true)
   {
     COROUTINE_YIELD();
-      uint8_t *sprite = heartData;
-    Serial.print("Pattern2");
-    //1프레임 보여주고 End
      uint8_t saturation = random(14, 16) * 16;
         for (int spx = 0; spx < SPRITE_WIDTH; spx++) {
             for (int spy = 0; spy < SPRITE_HEIGHT; spy++) {
@@ -80,46 +78,12 @@ COROUTINE(pattern2)
                    leds[spy * SPRITE_HEIGHT + spx] = CRGB::Black;
             }
         }
-
-        FastLED.show();
-        Blink = !Blink;
-
-  }
-  COROUTINE_END();
-}
-
-COROUTINE(kakaotalk)
-{
-  COROUTINE_BEGIN();
-  last_time = millis();
-  while(true)
-  {
-    /*
-    Serial.println(pattern_time-last_time);
-    if((pattern_time - last_time) > 8000)
-    {
-        break;
-    }*/
-     COROUTINE_YIELD();  
-     uint8_t *sprite = kakaoData;
-     Serial.print("Pattern1");
-    //1프레임 보여주고 End
-     uint8_t saturation = random(14, 16) * 16;
-        for (int spx = 0; spx < SPRITE_WIDTH; spx++) {
-            for (int spy = 0; spy < SPRITE_HEIGHT; spy++) {
-                    uint8_t spritePixel = sprite[spy * SPRITE_HEIGHT + (SPRITE_WIDTH) - spx - 1];
-                    if (spritePixel && Blink) {
- leds[spy * SPRITE_HEIGHT + spx] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED
-                    }
-                   else
-                   leds[spy * SPRITE_HEIGHT + spx] = CRGB::Black;
-            }
-        }
         FastLED.show();
         Blink = !Blink;
   }
   COROUTINE_END();
 }
+
 
 void setup() {
   // put your setup code here, to run once:
@@ -129,17 +93,12 @@ void setup() {
     mySerial.begin(9600); //블루투스 시리얼 개방
 
     CoroutineScheduler::setup();
-  kakaotalk.runCoroutine();
-  pattern2.runCoroutine();
-  kakaoText.runCoroutine();
+  Sprite_Blink.runCoroutine();
   last_time = millis();
 }
 
 
 void loop() {
-       // kakaoText.suspend();
-        pattern2.suspend();
-        kakaotalk.suspend();
         String cache = "";
         char myChar;
 
@@ -159,38 +118,43 @@ void loop() {
       Serial.println("input value: "+ myString); //시리얼모니터에 myString값 출력
       if(myString=="kakao" || myString == "1")
       {       
-        blink_count ++;
-       clearMatrix();
-       kakaotalk.runCoroutine();
+        sprite = kakaoData;
+        blink_count++;
+        clearMatrix();
+          Sprite_Blink.runCoroutine();
       }
       else if(myString == "2")
       {
-                blink_count ++;
-        clearMatrix();
-        pattern2.runCoroutine();
-
+         sprite = heartData;
+         blink_count ++;
+         clearMatrix();
+           Sprite_Blink.runCoroutine();
       }
       else if(myString=="call")
       {
-                blink_count ++;
+         blink_count ++;
         doPlasma();
       }
       else if(myString=="message")
       {
-                blink_count ++;
+        sprite = kakaoData;
+        blink_count++;
         clearMatrix();
-        kakaotalk.runCoroutine();
+          Sprite_Blink.runCoroutine();
       }
       else if(myString=="clear")
       {
-                blink_count=0;
+        blink_count=0;
+        sprite = blankData;
         clearMatrix();
+          Sprite_Blink.runCoroutine();
       }
       if(blink_count > 8)
       {
         clearMatrix();
+        sprite = idleData;
+        Sprite_Blink.runCoroutine();
         myString="";  //myString 변수값 초기화
-        blink_count = 0;
       }
       delay(500);
 }

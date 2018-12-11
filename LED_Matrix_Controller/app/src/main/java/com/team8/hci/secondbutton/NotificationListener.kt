@@ -115,13 +115,13 @@ class NotificationListener: NotificationListenerService () {
             }
         } else if ("android.messaging" in sbn.packageName) {
             if ("메시지" in App.prefs.appListEditText) {
-                LED_Matrix_socket.outputStream.write(SMSText.toByteArray())
+                LED_Matrix_socket.outputStream.write(KakaoText.toByteArray())
                 Toast.makeText(this, "메시지 LED 반짝!", Toast.LENGTH_LONG).show()
                 Appstate.setCurrentApp(sbn.packageName)
             }
         } else if ("com.kakao.talk" in sbn.packageName) {
             if ("카카오톡" in App.prefs.appListEditText) {
-                LED_Matrix_socket.outputStream.write(Text1.toByteArray())
+                LED_Matrix_socket.outputStream.write(KakaoText.toByteArray())
                 Toast.makeText(this, "카카오톡 LED 반짝!", Toast.LENGTH_LONG).show()
                 Appstate.setCurrentApp(sbn.packageName)
             }
@@ -129,7 +129,7 @@ class NotificationListener: NotificationListenerService () {
     }
 
     override fun onDestroy() {
-        Log.i("NotificationListener", "onDestroy()");
+        Log.i("NotificationListener", "onDestroy()")
 
         super.onDestroy()
 

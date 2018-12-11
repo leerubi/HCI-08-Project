@@ -59,7 +59,7 @@ COROUTINE(kakaoText)
   }
   COROUTINE_END();
 }
-
+//LED Matrix의 선이 연결된 부분이 오른쪽 위에 있다고 가정합니다.
 COROUTINE(Sprite_Blink)
 {
    COROUTINE_BEGIN();
@@ -72,7 +72,7 @@ COROUTINE(Sprite_Blink)
             for (int spy = 0; spy < SPRITE_HEIGHT; spy++) {
                     uint8_t spritePixel = sprite[spy * SPRITE_HEIGHT + spx];
                     if (spritePixel && Blink) {
-                        leds[spy * SPRITE_HEIGHT + spx] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED//hue 0 -> RED leds[spy * SPRITE_HEIGHT + spx] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED
+                        leds[spy * SPRITE_HEIGHT + (SPRITE_HEIGHT - spx - 1)] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED//hue 0 -> RED leds[spy * SPRITE_HEIGHT + spx] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED
                     }
                    else
                    leds[spy * SPRITE_HEIGHT + spx] = CRGB::Black;
@@ -114,41 +114,45 @@ void loop() {
         //  Serial.print(cache+ '\n');
     if(cache != "")
     myString = cache;
-      
-      Serial.println("input value: "+ myString); //시리얼모니터에 myString값 출력
+    Serial.println("input value: "+ myString); //시리얼모니터에 myString값 출력
+    if(myString != "")
+    {   
+      blink_count++;
+      clearMatrix();
+      //1 and 2 for legacy
       if(myString=="kakao" || myString == "1")
       {       
         sprite = kakaoData;
-        blink_count++;
-        clearMatrix();
-          Sprite_Blink.runCoroutine();
+        Sprite_Blink.runCoroutine();
       }
-      else if(myString == "2")
+      else if(myString == "heart" || myString == "2")
       {
          sprite = heartData;
-         blink_count ++;
-         clearMatrix();
-           Sprite_Blink.runCoroutine();
+         Sprite_Blink.runCoroutine();
       }
       else if(myString=="call")
       {
-         blink_count ++;
+        blink_count ++;
         doPlasma();
       }
       else if(myString=="message")
       {
         sprite = kakaoData;
-        blink_count++;
-        clearMatrix();
-          Sprite_Blink.runCoroutine();
+        Sprite_Blink.runCoroutine();
       }
       else if(myString=="clear")
       {
         blink_count=0;
         sprite = blankData;
-        clearMatrix();
-          Sprite_Blink.runCoroutine();
+        Sprite_Blink.runCoroutine();
       }
+      else//이상한 텍스트가 들어온 경우(위에 clear랑 같긴 한데, 혹시 몰라서 분리해둠)
+      {
+         blink_count=0;
+        sprite = blankData;
+        Sprite_Blink.runCoroutine();
+      }
+    }
       if(blink_count > 8)
       {
         clearMatrix();

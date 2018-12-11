@@ -68,7 +68,7 @@ class MainScreenActivity : AppCompatActivity() {
             {
                 //이미 socket 정보가 등록되어 있더라도, 확인해줍니다. 등록된 장치가 연결되지 않았으면 리셋해줍니다.
                 try {
-                    var t = "clear" as String
+                    var t = "clear\n" as String
                     socket.outputStream.write(t.toByteArray())
                     Toast.makeText(this, "LED Matrix가 이미 연결되어 있습니다!", Toast.LENGTH_LONG).show()
                 }
@@ -85,7 +85,7 @@ class MainScreenActivity : AppCompatActivity() {
         val Pattern1button = findViewById<TextView>(R.id.Pattern1)
         Pattern1button.setOnClickListener {
             var socket = AppState.getSocket()
-            var s = "1"
+            var s = "kakao\n"
             if(socket != null) {
                 Log.i("DebugButton","Pattern1Pressed")
                 socket.outputStream.write(s.toByteArray())
@@ -96,7 +96,7 @@ class MainScreenActivity : AppCompatActivity() {
         Pattern2button.setOnClickListener {
 
             var socket = AppState.getSocket()
-            var s = "2"
+            var s = "heart\n"
             if(socket != null) {
                 Log.i("DebugButton","Pattern2Pressed")
                 socket.outputStream.write(s.toByteArray())
@@ -105,7 +105,7 @@ class MainScreenActivity : AppCompatActivity() {
         val Clearbutton = findViewById<TextView>(R.id.PatternClear)
         Clearbutton .setOnClickListener {
             var socket = AppState.getSocket()
-            var s = "clear"
+            var s = "clear\n"
             if(socket != null) {
                 Log.i("DebugButton","PatternClearPressed")
                 socket.outputStream.write(s.toByteArray())

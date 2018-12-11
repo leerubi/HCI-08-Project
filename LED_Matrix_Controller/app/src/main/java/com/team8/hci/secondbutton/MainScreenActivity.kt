@@ -68,7 +68,7 @@ class MainScreenActivity : AppCompatActivity() {
             {
                 //이미 socket 정보가 등록되어 있더라도, 확인해줍니다. 등록된 장치가 연결되지 않았으면 리셋해줍니다.
                 try {
-                    var t = "clear\n" as String
+                    var t = "\n"
                     socket.outputStream.write(t.toByteArray())
                     Toast.makeText(this, "LED Matrix가 이미 연결되어 있습니다!", Toast.LENGTH_LONG).show()
                 }

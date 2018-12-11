@@ -3,6 +3,8 @@ package com.team8.hci.secondbutton
 import android.app.Application
 import android.bluetooth.BluetoothSocket
 import android.util.Log
+import android.widget.Toast
+import java.io.IOException
 
 public class App : Application() {
 
@@ -67,12 +69,19 @@ public class App : Application() {
     }
     fun getSocket() : BluetoothSocket? {
         try {
-            if (BtSocket != null)
-                return BtSocket
+            if (BtSocket != null) {
+                var t = "\n"
+                (BtSocket as BluetoothSocket).outputStream.write(t.toByteArray())
+            }
+            return BtSocket
         } catch (e: UninitializedPropertyAccessException)
         {
             Log.i("NotificationListener","BtSocket has not been initialized")
             return null
+        }
+        catch (e : IOException)
+        {
+            BtSocket = null
         }
         return null
 

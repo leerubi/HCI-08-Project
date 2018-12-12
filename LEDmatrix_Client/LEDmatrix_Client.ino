@@ -1,7 +1,7 @@
 #include <SoftwareSerial.h>
 #include <FastLED.h>
 #include <AceRoutine.h>
-//#include "Plasma.cpp"
+#include "Plasma.cpp"
 #include "Pattern.cpp" 
 
 #define WIDTH 9
@@ -56,6 +56,34 @@ COROUTINE(kakaoText)
 }
 */
 //LED Matrix의 선이 연결된 부분이 오른쪽 위에 있다고 가정합니다.
+COROUTINE(Rnd_Blink)
+{
+   COROUTINE_BEGIN();
+
+   while(true)
+  {
+    COROUTINE_YIELD();
+     //uint8_t saturation = random(14, 16) * 16;
+        for (int spx = 0; spx < SPRITE_WIDTH; spx++) {
+            for (int spy = 0; spy < SPRITE_HEIGHT; spy++) {
+                    //
+                    uint16_t spritePixel = sprite[spy * SPRITE_HEIGHT + spx];
+                    if (Blink) {
+                      uint8_t R = random(0,255);
+                      uint8_t G = random(0,255);
+                      uint8_t B = random(0,255);
+                      G -= (R* (0x10));
+                        leds[spy * SPRITE_HEIGHT + (SPRITE_HEIGHT - spx - 1)] = CRGB(R,G,B);//hue 0 -> RED//hue 0 -> RED leds[spy * SPRITE_HEIGHT + spx] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED
+                    }
+                   else
+                   leds[spy * SPRITE_HEIGHT + spx] = CRGB::Black;
+            }
+        }
+        FastLED.show();
+        Blink = !Blink;
+  }
+  COROUTINE_END();
+}
 COROUTINE(Sprite_Blink)
 {
    COROUTINE_BEGIN();
@@ -67,12 +95,12 @@ COROUTINE(Sprite_Blink)
         for (int spx = 0; spx < SPRITE_WIDTH; spx++) {
             for (int spy = 0; spy < SPRITE_HEIGHT; spy++) {
                     uint16_t spritePixel = sprite[spy * SPRITE_HEIGHT + spx];
-                    if (spritePixel && Blink) {
+                    if (Blink) {
                       uint8_t R = spritePixel / 0x100;
                       uint8_t G = spritePixel / 0x10;
                       uint8_t B = spritePixel % 0x10;
                       G -= (R* (0x10));
-                        leds[spy * SPRITE_HEIGHT + (SPRITE_HEIGHT - spx - 1)] = CRGB(R*16,G*16,B*16);//hue 0 -> RED//hue 0 -> RED leds[spy * SPRITE_HEIGHT + spx] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED
+                        leds[spy * SPRITE_HEIGHT + (SPRITE_HEIGHT - spx - 1)] = CRGB(R*17,G*17,B*17);//hue 0 -> RED//hue 0 -> RED leds[spy * SPRITE_HEIGHT + spx] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED
                     }
                    else
                    leds[spy * SPRITE_HEIGHT + spx] = CRGB::Black;
@@ -93,6 +121,7 @@ void setup() {
     mySerial.begin(9600); //블루투스 시리얼 개방
     CoroutineScheduler::setup();
     Sprite_Blink.runCoroutine();
+    Rnd_Blink.runCoroutine();
     last_time = millis();
 }
 
@@ -119,9 +148,11 @@ void loop() {
       //1 and 2 for legacy
       if(myString=="kakao" || myString == "1")
       {       
-        sprite = kakaoData;
-        Sprite_Blink.runCoroutine();
+        sprite = brokenheartData;
+        //Sprite_Blink.runCoroutine();
+        //Rnd_Blink.runCoroutine();
         delay(500);
+        doPlasma();
       }
       else if(myString == "heart" || myString == "2")
       {
@@ -178,12 +209,12 @@ void clearMatrix()
   }
   FastLED.show();
 }
-/*
+
 void doPlasma() {
     Plasma plasma(leds, WIDTH, HEIGHT, mySerial);
     plasma.start();
 }
-
+/*
 
 void doTwinkle() {
     Twinkle twinkle(leds, WIDTH, HEIGHT, mySerial, true, true);

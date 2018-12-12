@@ -84,9 +84,7 @@ public class App : Application() {
             BtSocket = null
         }
         return null
-
     }
-
     override fun onCreate() {
         prefs = MySharedPreferences(applicationContext)
         prefs2 = MySharedPreferences(applicationContext)

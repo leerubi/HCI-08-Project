@@ -1,10 +1,7 @@
 #include <SoftwareSerial.h>
 #include <FastLED.h>
 #include <AceRoutine.h>
-
 #include "Plasma.cpp"
-#include "Snake.cpp"
-#include "Twinkle.cpp"
 #include "Pattern.cpp"
 
 #define WIDTH 9
@@ -31,9 +28,9 @@ COROUTINE(kakaoText)
   COROUTINE_BEGIN();
    while(true)
   {
-   
+
     COROUTINE_YIELD();
-      uint8_t *sprite = KaKaoTextflow;
+    uint8_t *sprite = KaKaoTextflow;
     Serial.print("Pattern2");
     //1프레임 보여주고 End
      uint8_t saturation = random(0, 16) * 16;
@@ -97,11 +94,9 @@ void setup() {
   last_time = millis();
 }
 
-
 void loop() {
         String cache = "";
         char myChar;
-
     while(mySerial.available())  //mySerial에 전송된 값이 있으면
     {
       blink_count = 0;
@@ -124,11 +119,13 @@ void loop() {
       {       
         sprite = kakaoData;
         Sprite_Blink.runCoroutine();
+        delay(500);
       }
       else if(myString == "heart" || myString == "2")
       {
          sprite = heartData;
          Sprite_Blink.runCoroutine();
+         delay(500);
       }
       else if(myString=="call")
       {
@@ -139,6 +136,7 @@ void loop() {
       {
         sprite = kakaoData;
         Sprite_Blink.runCoroutine();
+        delay(500);
       }
       else if(myString=="clear")
       {
@@ -148,7 +146,8 @@ void loop() {
       }
       else//이상한 텍스트가 들어온 경우(위에 clear랑 같긴 한데, 혹시 몰라서 분리해둠)
       {
-         blink_count=0;
+        myString="";
+        blink_count=0;
         sprite = blankData;
         Sprite_Blink.runCoroutine();
       }
@@ -158,9 +157,9 @@ void loop() {
         clearMatrix();
         sprite = idleData;
         Sprite_Blink.runCoroutine();
+        delay(500);
         myString="";  //myString 변수값 초기화
       }
-      delay(500);
 }
 /*
 void doDeadChannel() {
@@ -183,6 +182,7 @@ void doPlasma() {
     plasma.start();
 }
 
+/*
 void doTwinkle() {
     Twinkle twinkle(leds, WIDTH, HEIGHT, mySerial, true, true);
     twinkle.start();
@@ -193,7 +193,7 @@ void doSnake() {
     snake.start();
 }
 
-/*
+
 void doLife() {
     Life life(leds, WIDTH, HEIGHT, 56);
     life.start();

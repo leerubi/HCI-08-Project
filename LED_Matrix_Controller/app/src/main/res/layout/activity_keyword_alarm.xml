@@ -65,10 +65,10 @@
                 android:id="@+id/editText1"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_weight="1"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
+                android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:hint="알림 설정할 키워드"
@@ -78,18 +78,13 @@
                 android:textColor="@android:color/black" />
 
 
-            <ImageView
-                android:id="@+id/addKeywordImg"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="12dp"
-                android:padding="4dp"
-                app:srcCompat="@android:drawable/ic_input_add"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="38dp" />
+            <Button
+                android:id="@+id/KeywordAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Add" />
+
         </LinearLayout>
 
         <View
@@ -112,9 +107,9 @@
 
 
         <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0.5dp"-->
-            <!--android:background="@android:color/darker_gray" />-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0.5dp"-->
+        <!--android:background="@android:color/darker_gray" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,8 +120,8 @@
                 android:id="@+id/keyword1"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginTop="4dp"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -141,23 +136,22 @@
                 android:id="@+id/delKeywordImg1"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="12dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="4dp"
                 android:padding="8dp"
                 app:srcCompat="@android:drawable/ic_delete"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="38dp" />
 
 
-
         </LinearLayout>
 
         <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray" />
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -169,8 +163,8 @@
                 android:id="@+id/keyword2"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginTop="4dp"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -179,16 +173,16 @@
                 android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                tools:layout_editor_absoluteY="38dp"/>
+                tools:layout_editor_absoluteY="38dp" />
 
             <ImageView
                 android:id="@+id/delKeywordImg2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="12dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="4dp"
                 android:padding="8dp"
                 app:srcCompat="@android:drawable/ic_delete"
                 tools:layout_editor_absoluteX="16dp"
@@ -196,7 +190,6 @@
 
 
         </LinearLayout>
-
 
 
         <View

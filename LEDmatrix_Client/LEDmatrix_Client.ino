@@ -1,18 +1,15 @@
 #include <SoftwareSerial.h>
 #include <FastLED.h>
 #include <AceRoutine.h>
-#include "Plasma.cpp"
+//#include "Plasma.cpp"
 #include "Pattern.cpp" 
 
 #define WIDTH 9
 #define HEIGHT 9
 #define NUM_LEDS WIDTH * HEIGHT
-
 #define DATA_PIN 7
-
 using namespace ace_routine;
 CRGB leds[NUM_LEDS];
-
 int blueTx=2;   //Tx (보내는핀 설정)
 int blueRx=3;   //Rx (받는핀 설정)
 SoftwareSerial mySerial(blueTx, blueRx);  //시리얼 통신을 위한 객체선언
@@ -20,9 +17,10 @@ String myString=""; //받는 문자열
 static bool Blink = true;
 static int frame = 0;
 static long pattern_time;
-static uint8_t *sprite;
+static uint16_t *sprite;
 long last_time;
         int blink_count = 0;
+        /*
 COROUTINE(kakaoText)
 {
   COROUTINE_BEGIN();
@@ -30,7 +28,7 @@ COROUTINE(kakaoText)
   {
 
     COROUTINE_YIELD();
-    uint8_t *sprite = KaKaoTextflow;
+    uint32_t *sprite = KaKaoTextflow;
     Serial.print("Pattern2");
     //1프레임 보여주고 End
      uint8_t saturation = random(0, 16) * 16;
@@ -56,6 +54,7 @@ COROUTINE(kakaoText)
   }
   COROUTINE_END();
 }
+*/
 //LED Matrix의 선이 연결된 부분이 오른쪽 위에 있다고 가정합니다.
 COROUTINE(Sprite_Blink)
 {
@@ -64,12 +63,16 @@ COROUTINE(Sprite_Blink)
    while(true)
   {
     COROUTINE_YIELD();
-     uint8_t saturation = random(14, 16) * 16;
+     //uint8_t saturation = random(14, 16) * 16;
         for (int spx = 0; spx < SPRITE_WIDTH; spx++) {
             for (int spy = 0; spy < SPRITE_HEIGHT; spy++) {
-                    uint8_t spritePixel = sprite[spy * SPRITE_HEIGHT + spx];
+                    uint16_t spritePixel = sprite[spy * SPRITE_HEIGHT + spx];
                     if (spritePixel && Blink) {
-                        leds[spy * SPRITE_HEIGHT + (SPRITE_HEIGHT - spx - 1)] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED//hue 0 -> RED leds[spy * SPRITE_HEIGHT + spx] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED
+                      uint8_t R = spritePixel / 0x100;
+                      uint8_t G = spritePixel / 0x10;
+                      uint8_t B = spritePixel % 0x10;
+                      G -= (R* (0x10));
+                        leds[spy * SPRITE_HEIGHT + (SPRITE_HEIGHT - spx - 1)] = CRGB(R*16,G*16,B*16);//hue 0 -> RED//hue 0 -> RED leds[spy * SPRITE_HEIGHT + spx] = CHSV(spritePixel, saturation, 0xFF);//hue 0 -> RED
                     }
                    else
                    leds[spy * SPRITE_HEIGHT + spx] = CRGB::Black;
@@ -88,10 +91,9 @@ void setup() {
     FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);
     Serial.begin(9600);   //시리얼모니터 
     mySerial.begin(9600); //블루투스 시리얼 개방
-
     CoroutineScheduler::setup();
-  Sprite_Blink.runCoroutine();
-  last_time = millis();
+    Sprite_Blink.runCoroutine();
+    last_time = millis();
 }
 
 void loop() {
@@ -130,7 +132,7 @@ void loop() {
       else if(myString=="call")
       {
         blink_count ++;
-        doPlasma();
+//        doPlasma();
       }
       else if(myString=="message")
       {
@@ -176,13 +178,13 @@ void clearMatrix()
   }
   FastLED.show();
 }
-
+/*
 void doPlasma() {
     Plasma plasma(leds, WIDTH, HEIGHT, mySerial);
     plasma.start();
 }
 
-/*
+
 void doTwinkle() {
     Twinkle twinkle(leds, WIDTH, HEIGHT, mySerial, true, true);
     twinkle.start();

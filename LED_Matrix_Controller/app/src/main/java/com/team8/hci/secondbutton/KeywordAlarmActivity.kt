@@ -9,18 +9,21 @@ import kotlinx.android.synthetic.main.activity_keyword_alarm.*
 import android.content.Intent
 import android.service.notification.StatusBarNotification
 import android.graphics.Bitmap
+import android.support.design.widget.TextInputEditText
 import android.util.Log
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 
 
 class KeywordAlarmActivity : AppCompatActivity() {
-
+    lateinit var AppState : App
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppState = applicationContext as App
         setContentView(R.layout.activity_keyword_alarm)
 
-        Log.i("여기보세요", App.prefs2.keywordSwitchEditText)
+ //       Log.i("여기보세요", App.prefs2.keywordSwitchEditText)
 
         // 키워드 알림이 On인지 Off인지 불러와서 텍스트 설정
         if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
@@ -39,10 +42,15 @@ class KeywordAlarmActivity : AppCompatActivity() {
                 App.prefs2.keywordSwitchEditText = "꺼짐"
             }
         }
-
-        val addKeywordImg = findViewById(R.id.addKeywordImg) as ImageView
-        addKeywordImg.setOnClickListener {
-        // add Keyword!
+        val KeywordAddbutton = findViewById<TextView>(R.id.KeywordAdd)
+        val KeywordField = findViewById<EditText>(R.id.editText1)
+        KeywordAddbutton.setOnClickListener()
+        {
+            var Keyword = KeywordField.text as String
+            if(Keyword != "") {
+                AppState.AddKeyword(Keyword)
+                Toast.makeText(this, Keyword + "가 키워드 리스트에 추가되었습니다!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

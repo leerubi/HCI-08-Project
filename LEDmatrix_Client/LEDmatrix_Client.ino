@@ -2,7 +2,7 @@
 #include <FastLED.h>
 #include <AceRoutine.h>
 #include "Plasma.cpp"
-#include "Pattern.cpp"
+#include "Pattern.cpp" 
 
 #define WIDTH 9
 #define HEIGHT 9
@@ -134,7 +134,7 @@ void loop() {
       }
       else if(myString=="message")
       {
-        sprite = kakaoData;
+        sprite = messageData;
         Sprite_Blink.runCoroutine();
         delay(500);
       }

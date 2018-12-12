@@ -31,9 +31,9 @@ import java.util.logging.Logger.global
 
 class MainScreenActivity : AppCompatActivity() {
     lateinit var BtService:BluetoothService
-    lateinit var BtSocket:BluetoothSocket
+    //lateinit var BtSocket:BluetoothSocket
     lateinit var NotificationListenerintent:Intent
-    lateinit var ms:NotificationListener // 서비스 객
+   // lateinit var ms:NotificationListener // 서비스 객
     lateinit var AppState : App
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

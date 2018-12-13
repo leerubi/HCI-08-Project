@@ -97,7 +97,7 @@ class NotificationListener: NotificationListenerService () {
             if (keywordlist != null) {
                 for (K in keywordlist) {
                     if (K in title || K in text) {
-                        LED_Matrix_socket.outputStream.write(K.toByteArray())//키워드를 그대로 전송합니다.
+                        LED_Matrix_socket.outputStream.write((K+"\n").toByteArray())//키워드를 그대로 전송합니다.
                         Toast.makeText(this, "키워드 LED 반짝!", Toast.LENGTH_LONG).show()
                         Appstate.setCurrentApp(sbn.packageName)
                     }

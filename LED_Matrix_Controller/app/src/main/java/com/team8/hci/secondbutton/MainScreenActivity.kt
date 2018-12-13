@@ -84,7 +84,7 @@ class MainScreenActivity : AppCompatActivity() {
         val Pattern1button = findViewById<TextView>(R.id.Pattern1)
         Pattern1button.setOnClickListener {
             var socket = AppState.getSocket()
-            var s = "kakao\n"
+            var s = "1\n"
             if(socket != null) {
                 Log.i("DebugButton","Pattern1Pressed")
                 socket.outputStream.write(s.toByteArray())
@@ -95,7 +95,7 @@ class MainScreenActivity : AppCompatActivity() {
         Pattern2button.setOnClickListener {
 
             var socket = AppState.getSocket()
-            var s = "heart\n"
+            var s = "2\n"
             if(socket != null) {
                 Log.i("DebugButton","Pattern2Pressed")
                 socket.outputStream.write(s.toByteArray())

@@ -26,11 +26,8 @@ class KeywordAlarmActivity : AppCompatActivity() {
  //       Log.i("여기보세요", App.prefs2.keywordSwitchEditText)
 
         // 키워드 알림이 On인지 Off인지 불러와서 텍스트 설정
-        if (App.prefs2.keywordSwitchEditText.equals("켜짐")) {
-            keywordSwitch.isChecked = true
-        } else {
-            keywordSwitch.isChecked = false
-        }
+        keywordSwitch.isChecked = App.prefs2.keywordSwitchEditText.equals("켜짐")
+
         Log.i("keywordSwitchOnOff", App.prefs2.keywordSwitchEditText)
         Log.i("alarmOnAppsList", App.prefs.appListEditText)
 

@@ -1,10 +1,8 @@
-#include "Effect.h"
-
+//#include "Effect.h"
+#include <SoftwareSerial.h>
+#include <FastLED.h>
 #define SPRITE_WIDTH 9
 #define SPRITE_HEIGHT 9
-#define TEXT1_LENGTH 4
-
-
 /*
 static uint16_t KaKaoTextflow[SPRITE_HEIGHT * SPRITE_WIDTH * (uint16_t)(TEXT1_LENGTH / 2)] =
 {

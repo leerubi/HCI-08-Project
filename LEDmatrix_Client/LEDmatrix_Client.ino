@@ -1,7 +1,4 @@
-#include <SoftwareSerial.h>
-#include <FastLED.h>
 #include <AceRoutine.h>
-#include "Plasma.cpp"
 #include "Pattern.cpp" 
 
 #define WIDTH 9
@@ -13,13 +10,13 @@ CRGB leds[NUM_LEDS];
 int blueTx=2;   //Tx (보내는핀 설정)
 int blueRx=3;   //Rx (받는핀 설정)
 SoftwareSerial mySerial(blueTx, blueRx);  //시리얼 통신을 위한 객체선언
-String myString=""; //받는 문자열
+String myString=" "; //받는 문자열
 static bool Blink = true;
 static int frame = 0;
 static long pattern_time;
 static uint16_t *sprite;
 long last_time;
-        int blink_count = 0;
+int blink_count = 0;
         /*
 COROUTINE(kakaoText)
 {
@@ -111,63 +108,82 @@ COROUTINE(Sprite_Blink)
   }
   COROUTINE_END();
 }
-
-
 void setup() {
   // put your setup code here, to run once:
 
     FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);
     Serial.begin(9600);   //시리얼모니터 
+    while(!Serial)
+    {
+    }
+    Serial.println("Hello! World!");
     mySerial.begin(9600); //블루투스 시리얼 개방
     CoroutineScheduler::setup();
     Sprite_Blink.runCoroutine();
     Rnd_Blink.runCoroutine();
     last_time = millis();
 }
-
 void loop() {
-        String cache = "";
-        char myChar;
+    String cache = "";
+    char myChar;   
     while(mySerial.available())  //mySerial에 전송된 값이 있으면
     {
       blink_count = 0;
       myChar = (char)mySerial.read();  //mySerial int 값을 char 형식으로 변환
+      Serial.print(myChar);
       if('\n' == myChar)
         break;
-      cache+=myChar;   //수신되는 문자를 myString에 모두 붙임 (1바이트씩 전송되는 것을 연결)*/
-      delay(5);           //수신 문자열 끊김 방지
+      cache += myChar;   //수신되는 문자를 myString에 모두 붙임 (1바이트씩 전송되는 것을 연결)*/
+      //delay(5);           //수신 문자열 끊김 방지
     }
-        //  Serial.print(cache+ '\n');
+    // Serial.println(cache);
+     //  Serial.print(cache+ '\n');
     if(cache != "")
+    {
     myString = cache;
-    Serial.println("input value: "+ myString); //시리얼모니터에 myString값 출력
+   Serial.println(cache); //시리얼모니터에 myString값 출력
+    }
+     if (Serial.available()) {    //시리얼모니터에 입력된 데이터가 있다면
+    mySerial.write(Serial.read());  //블루투스를 통해 입력된 데이터 전달
+  }
     if(myString != "")
     {   
       blink_count++;
       clearMatrix();
       //1 and 2 for legacy
-      if(myString=="kakao" || myString == "1")
+      
+      if(myString=="kakao")
       {       
-        sprite = brokenheartData;
-        //Sprite_Blink.runCoroutine();
-        //Rnd_Blink.runCoroutine();
-        delay(500);
-        doPlasma();
-      }
-      else if(myString == "heart" || myString == "2")
-      {
-         sprite = heartData;
-         Sprite_Blink.runCoroutine();
-         delay(500);
+        sprite = kakaoData;
+        Sprite_Blink.runCoroutine();
+        delay(500); 
       }
       else if(myString=="call")
       {
-        blink_count ++;
-//        doPlasma();
+         sprite = phonecallData;
+         Sprite_Blink.runCoroutine();
+         delay(500);
       }
       else if(myString=="message")
       {
         sprite = messageData;
+        Sprite_Blink.runCoroutine();
+        delay(500);
+      }
+      else if(myString=="Choi")
+      {
+        Rnd_Blink.runCoroutine();
+        delay(500);
+      }
+      else if(myString=="Bae")
+      {
+        sprite = heartData;
+        Sprite_Blink.runCoroutine();
+        delay(500);
+      }
+          else if(myString=="Ex")
+      {
+        sprite = exloverData;
         Sprite_Blink.runCoroutine();
         delay(500);
       }
@@ -194,12 +210,6 @@ void loop() {
         myString="";  //myString 변수값 초기화
       }
 }
-/*
-void doDeadChannel() {
-    DeadChannel deadChannel(leds, WIDTH, HEIGHT);
-    deadChannel.start();
-}*/
-
 void clearMatrix()
 {
   for (int spx = 0; spx < SPRITE_WIDTH; spx++) {
@@ -209,29 +219,9 @@ void clearMatrix()
   }
   FastLED.show();
 }
-
+/*
 void doPlasma() {
     Plasma plasma(leds, WIDTH, HEIGHT, mySerial);
     plasma.start();
 }
-/*
-
-void doTwinkle() {
-    Twinkle twinkle(leds, WIDTH, HEIGHT, mySerial, true, true);
-    twinkle.start();
-}
-
-void doSnake() {
-    Snake snake(leds, WIDTH, HEIGHT, mySerial);
-    snake.start();
-}
-
-
-void doLife() {
-    Life life(leds, WIDTH, HEIGHT, 56);
-    life.start();
-}
-void doSprite() {
-    Sprite sprite(leds, WIDTH, HEIGHT, mySerial);
-    sprite.start();
-}*/
+*/

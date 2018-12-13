@@ -15,7 +15,6 @@ public class App : Application() {
     * prefs3: 키워드 리스트
     * */
 
-
     companion object {
         var BtSocket = null as BluetoothSocket?
         lateinit var prefs : MySharedPreferences

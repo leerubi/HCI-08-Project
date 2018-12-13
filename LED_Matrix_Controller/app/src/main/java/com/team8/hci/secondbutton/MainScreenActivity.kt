@@ -49,10 +49,9 @@ class MainScreenActivity : AppCompatActivity() {
         //송중기
         //호랑이
 
-        AppState.AddKeyword("인공지능" as String)
-        AppState.AddKeyword("송중기" as String)
-        AppState.AddKeyword("호랑이" as String)
-        AppState.AddKeyword("애완" as String)
+        AppState.AddKeyword("Choi" as String)
+        AppState.AddKeyword("Bae" as String)
+        AppState.AddKeyword("Ex" as String)
         //새로운 Handler를 만듭니다, 블루투스 연결을 서브스레드에서 진행하게 하고, 그 결과를 다시 받아오게 할 수 있습니다.
         val bluetoothconnection = findViewById<TextView>(R.id.bluetoothConnection)
         bluetoothconnection.setOnClickListener {
